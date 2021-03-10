@@ -21,7 +21,7 @@ class Register extends Component {
       localStorage.setItem("user", this.username.value);
       auth(this.email.value, this.password.value);
       this.setState({
-        msg: "Verification Email sent.",
+        msg: "User Registered :)",
       });
     }
     if (this.password.value.length < 6) {
