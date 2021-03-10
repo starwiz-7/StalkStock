@@ -1,0 +1,71 @@
+*
+  box-sizing: border-box
+  font-family: 'Rubik'
+
+::-webkit-scrollbar
+  width: 7px
+
+/* Track */
+::-webkit-scrollbar-track
+  background: #f1f1f1
+
+::-webkit-scrollbar-thumb
+  background: $main-color
+
+::-webkit-scrollbar-thumb:hover
+  background: #4e53b2
+
+html, body, #root, .container, .Dashboard
+  margin: 0
+  width: 100%
+  height: 100%
+  display: flex
+  overflow-x: hidden
+  position: relative
+  color: white
+  background-color: $panel-color
+  transition: all .4s
+.light
+  .container, .Dashboard
+    background-color: $light-panel-color
+.Dashboard
+  overflow: hidden
+textarea
+  outline: none
+  border: none
+  &:focus
+    border-color: transparent !important
+
+input:focus
+  border-color: transparent !important
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
+    color: transparent
+
+textarea:focus
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
+    color: transparent
+
+input
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
+    color: #999999
+
+textarea
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
+    color: #999999
+
+a
+  text-decoration: none
+  margin: 0
+
+ul
+  list-style-type: none
+
+.loader-background
+  width: 100%
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
+.light .loader-background
+  background-color: $light-panel-color

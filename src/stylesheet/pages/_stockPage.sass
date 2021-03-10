@@ -1,0 +1,388 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
+
+input[type=number]
+    -moz-appearance: textfield
+@keyframes show-popup
+    0%
+        -webkit-transform: translate(-50%, -50%) scale(0.7)
+        transform: translate(-50%, -50%) scale(0.7)
+        opacity: 0
+
+    45%
+        -webkit-transform: translate(-50%, -50%) scale(1.05)
+        transform: translate(-50%, -50%) scale(1.05)
+        opacity: 1
+
+    80%
+        -webkit-transform: translate(-50%, -50%) scale(0.95)
+        transform: translate(-50%, -50%) scale(0.95)
+
+    100%
+        -webkit-transform: translate(-50%, -50%) scale(1)
+        transform: translate(-50%, -50%) scale(1)
+
+.light
+    .stockPage
+        background-color: $light-panel-color
+        &__keyStats h3
+            color: #3a1414
+        &__timers h6
+            background-color: $light-elements-color !important
+            color: #3a1414
+            &:hover
+                background-color: $light-inactive-color !important
+        .active
+            background-color: $light-inactive-color!important
+        &__trade-top h2, &__trade h5
+            color: #3a1414
+        &__buy-input
+            background-color: $light-elements-color !important
+            border: 1px $light-elements-color solid !important
+            color: #3a1414 !important
+    .article
+        background-color: $light-elements-color!important
+        &:hover
+            box-shadow: 3px 3px #ddd
+        &__content
+            color: #3a1414
+        &__top
+            h6
+                color: $light-inactive-color
+    .Key-info__info
+        h4
+            color: #3a1414!important
+        h3
+            color: $main-color!important
+    .buyConfirmation
+        background-color: white!important
+        h3
+            color: #3a1414 !important
+
+.stock
+    width: 100%
+    height: 100%
+    overflow: hidden
+.stockPage
+    width: 97%
+    padding: 3%
+    padding-top: 2%
+    display: flex
+    flex-direction: column
+    @media only screen and (max-width: 600px)
+        width: 100%
+    .loader
+        margin: 100px auto
+.stockPage__top
+    display: flex
+    width: 100%
+    flex-wrap: wrap
+    height: 45%
+    @media only screen and (max-width: 900px)
+        height: 60%
+.Chart
+    width: 80%
+    height: 90%
+    padding: 10px
+    position: relative
+    @media only screen and (max-width: 900px)
+        width: 100%
+        height: 80%
+    @media only screen and (max-width: 900px)
+        width: 100%
+        height: 70%
+    &__info
+        width: 100%
+    &__timers
+        position: absolute
+        top: -20px
+        right: 20px
+        color: white
+        transition: all .5s
+        cursor: pointer
+        display: flex
+        h6
+            padding: 5px 10px
+            border-radius: 10px
+            background-color: #222831
+            margin: 0 3px
+            transition: all .5s
+            &:hover
+                background-color: $elements-color
+        .active
+            background-color: $elements-color
+
+.stockPage__trade
+    width: 20%
+    height: 100%
+    display: flex
+    justify-content: flex-start
+    align-items: flex-start
+    border-radius: 8px
+    flex-direction: column
+    position: relative
+    .stockPage__buy-container
+        @media only screen and (max-width: 900px)
+            position: absolute
+            right: 10px
+            bottom: 20px
+        @media only screen and (max-width: 400px)
+            width: 50%
+            input, button
+                font-size: 9px
+    @media only screen and (max-width: 900px)
+        flex-direction: row
+        height: auto
+        width: 100%
+    h5
+        color: white
+        font-weight: 400
+        @media only screen and (max-width: 900px)
+            display: none
+
+    h2
+        font-weight: 400
+    h4
+        color: $inactive-color
+        margin: 0
+    h6
+        margin-top: -20px
+        margin: 0
+        color: $inactive-color
+        @media only screen and (max-width: 900px)
+            margin-left: 20px
+
+    .stockPage__trade-top
+        width: 100%
+        display: flex
+        align-items: center
+        margin-top: 20px
+        @media only screen and (max-width: 900px)
+            width: auto
+        h2
+            margin: 0
+            margin-bottom: 10px
+        h6
+            margin-left: 10px
+            white-space: nowrap
+    .stockPage__buy-input
+        background-color: $elements-color
+        color: white
+        padding: 10px
+        font-weight: bold
+        border-radius: 5px
+        border: 1px solid $panel-color
+        margin-right: 7px
+        width: 70%
+        transition: all .5s
+        letter-spacing: 1px
+        &:hover,&:focus
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,.2)
+.stockPage__buy-button
+    padding: 10px
+    background-color: #30475E
+    color: white
+    font-weight: bold
+    transition: all .5s
+    border-radius: 5px
+    &:hover
+        box-shadow: 3px 3px #ddd
+    &:nth-child(1)
+        margin-right: 20px
+.stockPage__sell-button
+    padding: 10px
+    background-color: #ddd
+    color: #30475E
+    font-weight: bold
+    transition: all .5s
+    border-radius: 5px
+    &:hover
+        box-shadow: 3px 3px #ddd
+    &:nth-child(1)
+        margin-right: 20px
+.cancel
+    background: #30475E
+    &:hover
+        box-shadow: 3px 3px #ddd
+
+.stockPage__keyStats
+    width: 100%
+    height: 55%
+    display: flex
+    @media only screen and (max-width: 900px)
+        height: 40%
+    .stockPage__headings
+        display: flex
+        justify-content: space-between
+        h3:nth-child(2)
+            margin-right: 200px
+    .Key-info
+        width: 50%
+        height: 100%
+        display: flex
+        flex-direction: column
+        @media only screen and (max-width: 750px)
+            width: 100%
+        @media only screen and (max-width: 900px)
+            h3
+                margin-bottom: 0
+        .Key-info__columns
+            display: flex
+            flex-wrap: wrap
+            height: 100%
+        .Key-info__label
+            font-weight: 400
+        .Key-info__info
+            width: 33%
+            @media only screen and (max-width: 600px)
+                display: flex
+                justify-content: center
+                align-items: center
+                flex-direction: column
+            h3
+                color: white
+        h4
+            margin: 25px 0
+            color: $inactive-color
+            @media only screen and (max-width: 900px)
+                margin: 10px 0
+            @media only screen and (max-height: 550px)
+                margin: 10px 0
+    h3
+        color: $inactive-color
+        display: flex
+        align-items: center
+        width: 100%
+        @media only screen and (max-width: 600px)
+            width: auto
+
+        svg
+            width: 30px
+            margin-right: 10px
+            fill: $main-color
+    .news
+        width: 50%
+        display: flex
+        flex-direction: column
+        height: 100%
+        &__articles
+            margin-top: -15px
+            position: relative
+        &__articles a:last-child
+            @media only screen and (max-width: 900px)
+                display: none
+            @media only screen and (max-height: 650px)
+                display: none
+        @media only screen and (max-width: 750px)
+            display: none
+        @media only screen and (max-height: 480px)
+            a:nth-child(2)
+                display: none
+        &__nothing
+            display: flex
+            justify-content: center
+            align-items: center
+            height: 100%
+            flex-direction: column
+            width: 100%
+            h3
+                width: auto
+            svg
+                width: 30%
+                height: 30%
+                fill: $main-color
+        .article
+            width: 100%
+            background-color: $elements-color
+            padding: 5px 15px
+            display: flex
+            margin: 15px 0
+            cursor: pointer
+            transition: all .3s
+            position: relative
+            min-height: 80px
+            height: auto
+            border-radius: 10px
+            h4
+                margin: 0
+                max-width: 90%
+            h6
+                margin: 0 10px
+                white-space: nowrap
+                position: absolute
+                right: 10px
+                top: 10px
+                color: $inactive-color
+            h5
+                font-weight: 400
+                margin: 5px 0
+            &__image
+                min-width: 80px
+                background-repeat: no-repeat
+                background-size: contain
+                background-position: center
+                margin-right: 20px
+                max-width: 80px
+                @media only screen and (max-width: 900px)
+                    min-width: 40px
+                    margin-right: 10px
+            &__top
+                display: flex
+                align-items: center
+                justify-content: space-between
+            &:hover
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.15)
+
+.wrongSymbol
+    width: 100%
+    height: 100%
+    position: absolute
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    overflow: hidden
+    h1
+        color: $inactive-color
+        text-transform: uppercase
+        letter-spacing: 5px
+        margin-bottom: 100px
+    .topbar__searchbar
+        width: 33%
+        margin: 0
+    a
+        color: $main-color
+    h3
+        margin: 0
+
+.buyConfirmation
+    width: 50%
+    height: 30%
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 101
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    border-radius: 10px
+    background-color: $panel-color
+    animation: show-popup .3s
+    text-align: center
+    h3
+        font-weight: 400
+
+.black-bg
+    position: absolute
+    width: 100%
+    height: 100%
+    background: rgba(0,0,0,.3)
+    z-index: 100
+
+@media (max-width: 1380px)
+    .stock
+        flex-direction: column

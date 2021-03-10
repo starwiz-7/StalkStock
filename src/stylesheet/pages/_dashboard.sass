@@ -1,0 +1,479 @@
+.loader
+  z-index: 3
+  margin: 0 auto
+  left: 0
+  right: 0
+  top: 50%
+  margin-top: -30px
+  width: 60px
+  padding: 0
+  height: 60px
+  list-style: none
+  box-sizing: content-box
+  position: absolute
+
+@-webkit-keyframes 'loadbars'
+  0%
+  height: 10px
+  margin-top: 25px
+
+  50%
+  height: 50px
+  margin-top: 0px
+
+  100%
+  height: 10px
+  margin-top: 25px
+
+.loader li
+  background-color: '#ddd'
+  width: 10px
+  height: 10px
+  float: right
+  margin-right: 5px
+  box-shadow: 0px 80px 20px rgba(0, 0, 0, 0.3)
+  &:first-child
+    -webkit-animation: loadbars 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) infinite 0s
+  &:nth-child(2)
+    -webkit-animation: loadbars 0.6s ease-in-out infinite -0.2s
+  &:nth-child(3)
+    -webkit-animation: loadbars 0.6s ease-in-out infinite -0.4s
+a
+  color: white
+
+@keyframes show-popup
+  0%
+    -webkit-transform: translate(-50%, -50%) scale(0.7)
+    transform: translate(-50%, -50%) scale(0.7)
+    opacity: 0
+
+  45%
+    -webkit-transform: translate(-50%, -50%) scale(1.05)
+    transform: translate(-50%, -50%) scale(1.05)
+    opacity: 1
+
+  80%
+    -webkit-transform: translate(-50%, -50%) scale(0.95)
+    transform: translate(-50%, -50%) scale(0.95)
+
+  100%
+    -webkit-transform: translate(-50%, -50%) scale(1)
+    transform: translate(-50%, -50%) scale(1)
+
+.alertMessage
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  z-index: 50
+  width: 60%
+  background-color: $panel-color
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 20%
+  min-height: 250px
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.27)
+  flex-direction: column
+  text-align: center
+  padding: 50px
+  animation: show-popup .3s
+  h2
+    margin-bottom: 10px
+  p
+    margin-bottom: 50px
+  .alertMessage__button
+    background: $main-color
+    padding: 15px 40px
+    border-radius: 10px
+    color: white
+    font-weight: bold
+    transition: all .4s
+    &:hover
+      box-shadow: 0px 0px 15px 0px $main-color
+
+.leftbar
+  position: relative
+  background-color: $bar-color
+  width: 5%
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  padding: 0 10px
+  transition: all .4s
+  min-width: 50px
+  &__logo
+    width: 5%
+    min-width: 40px
+    position: absolute
+    top: 30px
+    fill: $main-color
+  @media only screen and (max-width: 600px)
+    display: none
+  a
+    margin-bottom: 50px
+
+  .leftbar__log
+    fill: $inactive-color
+    width: 30%
+    cursor: pointer
+    position: absolute
+    transition: all .4s
+    bottom: 20px
+    min-width: 20px
+
+.light
+  .panel
+    background-color: $light-panel-color
+    &__title h3
+      color: black
+    &__portfolio
+      background-color: $light-elements-color!important
+      td:nth-child(1),td:nth-child(2),td:nth-child(4),
+        color: #3a1414!important
+    &__list li
+      background-color: $light-elements-color
+    &__fullname h4, &__list-change h4, &__bottom-title h3, &__value
+      color: #3a1414!important
+  .leftbar
+    background-color: $light-bar-color
+    &__menu li
+      fill: $light-inactive-color
+  .stockChart
+    background-color: $light-elements-color
+    &__price
+      color: #3a1414
+  .errorMsg p
+    color: #3a1414
+  .alertMessage
+    background-color: white!important
+    color: #3a1414
+    h2
+      color: #3a1414
+
+.panel
+  background-color: $panel-color
+  width: 95%
+  height: 100%
+  padding: 3%
+  padding-top: 2%
+  transition: all .4s
+  @media only screen and (max-width: 600px)
+    width: 100%
+    .panel__container
+      display: flex
+      align-items: center
+      flex-wrap: wrap
+      height: 40%
+      margin-bottom: 50px
+    .panel__topCharts
+      height: 100%
+      width: 100%
+      min-height: 200px
+      @media only screen and (max-width: 1200px)
+        justify-content: space-between
+    .panel__top
+      display: flex
+      flex-wrap: wrap
+      width: 100%
+      height: 100%
+      max-height: 380px
+      @media only screen and (max-width: 1200px)
+        width: 100%
+      .panel__title
+        display: flex
+        align-items: center
+        flex-direction: row
+        width: 100%
+        div:nth-child(1)
+          width: 73%
+          @media only screen and (max-width: 1050px)
+            width: 53%
+        @media only screen and (max-width: 1050px)
+          div:nth-child(2)
+            display: none!important
+        h2
+          margin: 10px 0
+        .panel__popular
+          width: 3%
+          min-width: 20px
+          margin-right: 10px
+.panel__status
+  position: absolute
+  bottom: 105px
+  transform: rotate(-90deg)
+  white-space: nowrap
+  @media only screen and (max-height: 530px)
+    display: none
+  @media only screen and (max-width: 600px)
+    display: none
+.stockChart
+  background-color: $elements-color
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.07)
+  width: 100%
+  flex-direction: row
+  position: relative
+  display: flex
+  border-radius: 5px
+  align-items: center
+  justify-content: center
+  text-align: center
+  margin-bottom: 20px
+  min-width: 250px
+  height: 100%
+  cursor: pointer
+  h5
+    color: $inactive-color
+    svg
+      fill: $inactive-color
+      width: 20%
+.chartLink
+  margin-right: 4.5%
+  width: 33%
+  @media only screen and (max-width: 1050px)
+    width: 50%
+    &:nth-child(2)
+      margin-right: 0
+  @media only screen and (max-width: 700px)
+    &:nth-child(2)
+      display: none
+    &:nth-child(1)
+      width: 100%
+      margin: 0
+.panel__portfolio-title
+  width: 5.5%
+  fill: $main-color
+  margin-right: 10px
+  min-width: 20px
+.panel__portfolio-section
+  width: 30%
+  height: 100%
+  min-width: 250px
+  @media only screen and (max-width: 850px)
+    width: 100%
+  .panel__portfolio
+    margin-right: 50px
+    justify-content: center
+    display: flex
+    align-items: center
+    width: 100%
+    min-width: 100px
+    border-radius: 5px
+    background-color: $elements-color
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.07)
+    color: $inactive-color
+    height: 100%
+    min-height: 10rem
+    margin-bottom: 20px
+    position: relative
+    padding: 10px 20px
+    svg
+      fill: $inactive-color
+      width: 20%
+    .panel__portfolio-list
+      width: 100%
+      height: 100%
+      padding: 0
+      margin: 0
+      font-size: 10px
+      border-spacing: 0 10px
+      white-space: nowrap
+      tr:nth-child(1)
+        color: $inactive-color
+      td
+        text-align: center
+        color: white
+        font-size: 13px
+      tr td:nth-child(3)
+        font-weight: bold
+  .panel__value
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: absolute
+    bottom: 10px
+    width: 90%
+    color: white
+    &:before
+      position: absolute
+      content: ''
+      width: 100%
+      height: 2px
+      bottom: 50px
+      border-bottom: 1px solid $main-color
+      box-shadow: 0px 0px 30px 0px rgba(94,181,248,.3)
+.errorMsg
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  font-weight: bold
+  color: white
+  margin: auto
+  svg
+    fill: $main-color!important
+.stockChart__chart
+  width: 100%
+  height: 40%
+  position: absolute
+  top: 40px
+  cursor: pointer
+.stockChart__info
+  position: absolute
+  bottom: 0
+  display: flex
+  justify-content: space-between
+  width: 100%
+  padding: 30px
+  align-items: center
+  h4
+    margin: 5px 0
+  .stockChart__price
+    font-weight: 400
+.stockChart__name
+  color: $text-color!important
+  margin: 0
+  background: linear-gradient(to right, rgb(124, 131, 255) 30%, rgb(124, 193, 255) 100%)
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.2)
+  width: 90px
+  height: 60px
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 20px
+  color: white
+.stockChart__price
+  margin: 0
+.stockChart__price-info
+  display: flex
+  align-items: flex-end
+  flex-direction: column
+.stockChart__change
+  font-weight: 400
+.leftbar__menu
+  @media only screen and (max-height: 450px)
+    margin-top: 80px
+.leftbar__menu, .panel__list
+  list-style-type: none
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  padding: 0
+  font-weight: 800
+  svg
+    width: 40%
+    min-width: 23px
+    margin-bottom: -7px
+  li
+    fill: $inactive-color
+    display: flex
+    white-space: nowrap
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    height: 30%
+    color: $inactive-color
+    transition: all .4s
+    &:hover
+      fill: $main-color!important
+.panel__low
+  display: flex
+  flex-direction: column
+  height: 45%
+  width: 100%
+  position: relative
+  @media only screen and (max-height: 500px)
+    display: none
+  .errorMsg svg
+    width: 13%
+.panel__bottom
+  display: flex
+  justify-content: space-between
+  min-height: 150px
+  @media only screen and (max-height: 570px)
+    min-height: 80px
+.panel__bottom-title
+  display: flex
+  width: 100%
+  align-items: center
+  @media only screen and (max-height: 570px)
+    margin-top: 30px
+    h3
+      margin-bottom: 12px
+  svg
+    width: 2%
+    min-width: 30px
+    margin-right: 10px
+    fill: $main-color
+
+.panel__stockList
+  width: 30%
+  min-width: 300px
+  display: flex
+  align-items: flex-start
+  @media only screen and (max-width: 1000px) and (min-width: 770px)
+    justify-content: space-between
+    min-width: 0
+  @media only screen and (max-width: 850px)
+    &:nth-child(3)
+      display: none
+    &:nth-child(1),&:nth-child(2)
+      width: 48%
+  @media only screen and (max-width: 720px)
+    &:nth-child(1),&:nth-child(2)
+      min-width: 50px
+
+.panel__list
+  width: 100%
+  margin: 0
+  a
+    color: white
+    display: flex
+    width: 100%
+    align-items: center
+    justify-content: space-between
+  .panel__fullname
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    h4
+      margin: 0
+      margin-bottom: 5px
+    h6
+      margin: 0
+  .panel__name
+    color: $inactive-color
+  .panel__list-change
+    display: flex
+    margin: 0
+    align-items: flex-end
+    flex-direction: column
+    h4
+      margin: 0
+  li
+    display: flex
+    justify-content: space-between
+    border-radius: 5px
+    width: 100%
+    margin: 8px
+    padding: 10px 10px
+    background-color: $elements-color
+    color: $text-color
+
+    &:hover
+      box-shadow: 3px 3px #ddd
+    @media only screen and (max-height: 650px)
+      &:last-child
+        display: none
+    @media only screen and (max-height: 570px)
+      &:nth-child(2)
+        display: none
+    span
+      display: flex
+      align-items: center
+      img
+        margin-right: 10px
+        width: 15%
+        height: 15%
