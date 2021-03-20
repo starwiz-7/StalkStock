@@ -96,8 +96,15 @@ let allSymbols = [];
 
 
 let watchlist = [];
+
 let oneDay = [];
 let oneDayLabels = [];
+
+let oneYear = [];
+let oneYearLabels = [];
+
+let oneMonth = [];
+let oneMonthLabels = [];
 
 export default class stockPage extends React.Component {
 	_isMounted = false;
@@ -122,8 +129,6 @@ export default class stockPage extends React.Component {
 		this.day = React.createRef();
 		this.month = React.createRef();
 		this.year = React.createRef();
-		this.years = React.createRef();
-		this.ytd = React.createRef();
 		this.bookmark = React.createRef();
 
 		this.searchStocks = this.searchStocks.bind(this);
@@ -131,6 +136,8 @@ export default class stockPage extends React.Component {
 		this.getWatchlist = this.getWatchlist.bind(this);
 		this.handleWatchlist = this.handleWatchlist.bind(this);
 		this.getOneDayChart = this.getOneDayChart.bind(this);
+		this.getOneMonthChart = this.getOneMonthChart.bind(this);
+    	this.getOneYearChart = this.getOneYearChart.bind(this);
 
 		this.data1 = (canvas) => {
 			const ctx = canvas.getContext("2d");
@@ -321,6 +328,78 @@ export default class stockPage extends React.Component {
 		}
 		options.annotation = anno;
 	}
+
+	getOneYearChart() {
+		labels = [];
+		chartData1 = [];
+		if (oneYear.length === 0) {
+		  const stockApi = `https://cloud.iexapis.com/beta/stock/${symbol}/batch?token=${process.env.REACT_APP_IEX_KEY_1}&types=chart,quote&range=1y`;
+		  fetch(stockApi)
+			.then(res => res.json())
+			.then(result => {
+			  for (let i = 0; i < result.chart.length; i++) {
+				if (result.chart[parseInt(i)].average !== null) {
+				  chartData1.push(result.chart[parseInt(i)].close.toFixed(2));
+				  labels.push(result.chart[parseInt(i)].label);
+				}
+			  }
+			})
+			.then(() => {
+			  if (this._isMounted) {
+				this.setState({
+				  loaded: true,
+				});
+			  }
+			  chartData1.map(val => oneYear.push(val));
+			  labels.map(val => oneYearLabels.push(val));
+			});
+		} else {
+		  labels = oneYearLabels;
+		  chartData1 = oneYear;
+		  if (this._isMounted) {
+			this.setState({
+			  loaded: true,
+			});
+		  }
+		}
+		options.annotation = "";
+	  }
+
+	  getOneMonthChart() {
+		labels = [];
+		chartData1 = [];
+		if (oneMonth.length === 0) {
+		  const stockApi = `https://cloud.iexapis.com/beta/stock/${symbol}/batch?token=${process.env.REACT_APP_IEX_KEY_1}&types=chart,quote&range=1m`;
+		  fetch(stockApi)
+			.then(res => res.json())
+			.then(result => {
+			  for (let i = 0; i < result.chart.length; i++) {
+				if (result.chart[parseInt(i)].average !== null) {
+				  chartData1.push(result.chart[parseInt(i)].close.toFixed(2));
+				  labels.push(result.chart[parseInt(i)].label);
+				}
+			  }
+			})
+			.then(() => {
+			  if (this._isMounted) {
+				this.setState({
+				  loaded: true,
+				});
+			  }
+			  chartData1.map(val => oneMonth.push(val));
+			  labels.map(val => oneMonthLabels.push(val));
+			});
+		} else {
+		  labels = oneMonthLabels;
+		  chartData1 = oneMonth;
+		  if (this._isMounted) {
+			this.setState({
+			  loaded: true,
+			});
+		  }
+		}
+		options.annotation = "";
+	  }
 
 	
 	/*
@@ -786,9 +865,13 @@ export default class stockPage extends React.Component {
 									<FullChart
 										changeFocus={this.changeFocus}
 										getOneDayChart={this.getOneDayChart}
+										getOneMonthChart={this.getOneMonthChart}
+                    					getOneYearChart={this.getOneYearChart}
 										data1={this.data1}
 										stockData={stockData}
 										day={this.day}
+										year={this.year}
+										month={this.month}
 									/>
 									<div className="stockPage__trade">
 										<div className="stockPage__mobile">
